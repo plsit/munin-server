@@ -1,0 +1,23 @@
+version: '2'
+services:
+  munin-server:
+    image: munin-server
+    build:
+      context: .
+    volumes:
+      - ./data/var/log/munin:/var/log/munin
+      - ./data/var/lib/munin:/var/lib/munin
+      - ./data/var/run/munin:/var/run/munin
+      - ./data/var/cache/munin:/var/cache/munin
+      - ./conf:/etc/munin/munin-conf.d
+      - ./munin.conf:/etc/munin/munin.conf:ro
+      - ./munin.cron:/etc/cron.d/munin:ro
+    environment:
+      - MUNIN_USER=munin
+      - MUNIN_PASSWORD=munin
+      - SMTP_HOST=mail.example.com
+      - SMTP_PORT=25
+      - SMTP_USE_TLS=false
+      - SMTP_ALWAYS_SEND=false
+    ports:
+      - "8080:8080"
