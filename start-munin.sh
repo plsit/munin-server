@@ -9,6 +9,9 @@ SMTP_ALWAYS_SEND=${SMTP_ALWAYS_SEND:-true}
 SMTP_MESSAGE_DEFAULT='[${var:group};${var:host}] -> ${var:graph_title} -> warnings: ${loop<,>:wfields  ${var:label}=${var:value}} / criticals: ${loop<,>:cfields  ${var:label}=${var:value}}'
 SMTP_MESSAGE="${SMTP_MESSAGE:-$SMTP_MESSAGE_DEFAULT}"
 
+#Start RRDCACHED
+/startrrd
+
 truncate -s 0 "${MAIL_CONF_PATH}"
 
 if [ "${SMTP_USE_TLS}" = true ] ; then
@@ -110,6 +113,8 @@ echo "Using the following munin nodes:"
 echo $NODES
 # start nginx
 /usr/sbin/nginx
+#start supervisord
+#/usr/bin/supervisord
 # show logs
 echo "Tailing /var/log/syslog..."
 tail -F /var/log/syslog /var/log/munin/munin-update.log & pid=$!

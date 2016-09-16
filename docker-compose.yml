@@ -1,7 +1,7 @@
 version: '2'
 services:
   munin-server:
-    image: munin-server
+    image: plsit/munin-server
     build:
       context: .
     volumes:
