@@ -21,6 +21,6 @@ RUN cd /usr/share/munin && patch munin-graph < munin-graph-logging.patch && patc
 COPY ./munin.cron /etc/cron.d/munin
 
 VOLUME ["/etc/munin/munin-conf.d", "/var/log/munin", "/var/lib/munin", "/var/run/munin", "/var/cache/munin"]
-chown -R munin:munin /var/log/munin /var/lib/munin /var/run/munin /var/cache/munin
+RUN chown -R munin:munin /var/log/munin /var/lib/munin /var/run/munin /var/cache/munin
 EXPOSE 8080
 CMD ["bash", "/munin"]
