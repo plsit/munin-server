@@ -14,7 +14,7 @@ ADD ./startrrd.sh /startrrd
 ADD ./munin-graph-logging.patch /usr/share/munin
 ADD ./munin-update-logging.patch /usr/share/munin
 
-ADD ./muinin-graph /usr/bin/munin-graph
+ADD ./munin-graph /usr/bin/munin-graph
 ADD ./munin-cron /usr/bin/munin-cron
 
 RUN cd /usr/share/munin && patch munin-graph < munin-graph-logging.patch && patch munin-update < munin-update-logging.patch
