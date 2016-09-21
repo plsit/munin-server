@@ -113,8 +113,7 @@ echo "Using the following munin nodes:"
 echo $NODES
 # start nginx
 /usr/sbin/nginx
-#start supervisord
-#/usr/bin/supervisord
+
 # show logs
 echo "Tailing /var/log/syslog..."
 tail -F /var/log/syslog /var/log/munin/munin-update.log & pid=$!
