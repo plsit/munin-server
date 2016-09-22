@@ -11,7 +11,7 @@ services:
       - ./data/var/cache/munin:/var/cache/munin
       - ./conf:/etc/munin/munin-conf.d
       - ./munin.conf:/etc/munin/munin.conf:ro
-      - ./munin.cron:/etc/cron.d/munin:ro
+     # - ./munin.cron:/etc/cron.d/munin:ro
     environment:
       - MUNIN_USER=munin
       - MUNIN_PASSWORD=munin

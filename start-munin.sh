@@ -12,6 +12,9 @@ SMTP_MESSAGE="${SMTP_MESSAGE:-$SMTP_MESSAGE_DEFAULT}"
 #Start RRDCACHED
 /startrrd
 
+#log files
+touch /var/log/munin/munin-update.log /var/log/munin/munin-limits.log /var/log/munin/munin-html.log /var/log/munin/munin-graph.log && chown -R munin:munin /var/log/munin && chown -R munin:munin /var/lib/munin
+
 truncate -s 0 "${MAIL_CONF_PATH}"
 
 if [ "${SMTP_USE_TLS}" = true ] ; then

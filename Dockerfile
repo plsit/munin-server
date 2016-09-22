@@ -19,8 +19,12 @@ ADD ./munin-cron /usr/bin/munin-cron
 
 RUN cd /usr/share/munin && patch munin-graph < munin-graph-logging.patch && patch munin-update < munin-update-logging.patch
 COPY ./munin.cron /etc/cron.d/munin
+RUN chown root:root /etc/cron.d/munin \
+    && chmod +x /startrrd \
+    && chown -R munin:munin /etc/munin/munin-conf.d
 
 VOLUME ["/etc/munin/munin-conf.d", "/var/log/munin", "/var/lib/munin", "/var/run/munin", "/var/cache/munin"]
-RUN chown -R munin:munin /var/log/munin /var/lib/munin /var/run/munin /var/cache/munin
+RUN touch /var/log/munin/munin-update.log && chown -R munin:munin /var/log/munin /var/lib/munin /var/run/munin /var/cache/munin
+
 EXPOSE 8080
 CMD ["bash", "/munin"]
